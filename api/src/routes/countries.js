@@ -1,6 +1,6 @@
 const { Router } = require('express');
 // const axios = require('axios');
-const { getApiCountries, getCountryByName, getCountryById } = require('../controllers/countriesControllers');
+const { getAllCountries, getCountryByName, getCountryById } = require('../controllers/countriesControllers');
 
 const router = Router();
 
@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     const { name } = req.query;
     if (!name) {
         try {
-            const countries = await getApiCountries();
+            const countries = await getAllCountries();
             return res.status(200).json(countries);
         } catch (error) {
             return res.status(400).json({message: error});

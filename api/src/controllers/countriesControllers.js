@@ -1,24 +1,16 @@
 const axios = require('axios');
-const { Country } = require('../db')
+const { Sequelize } = require('sequelize');
+const Op = Sequelize.Op;
+const { Country, Activity } = require('../db');
 
-// Function to get apiCountries
-const getApiCountries = async () => {
+// Function to get all countries
+const getAllCountries = async () => {
     try {
-        const apiCountries = (await axios.get('https://restcountries.com/v3/all')).data;
-        console.log(apiCountries);
-        const allCountries = apiCountries?.map(country => {
-            return {
-                id: country.cca3,
-                name: country.name.common,
-                image: country.flags[0],
-                capital: country.capital,
-                continent: country.continents[0],
-                subregion: country.subregion,
-                area: country.area,
-                population: country.population
+        const allCountries = await Country.findAll({
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
             }
         });
-        // console.log(allCountries);
         return allCountries;
     } catch (error) {
         console.log(error);
@@ -28,22 +20,17 @@ const getApiCountries = async () => {
 // Function to get countries by name
 const getCountryByName = async (name) => {
     try {
-        const countryByName = (await axios.get(`https://restcountries.com/v3/name/${name}`)).data;
-        // console.log(countryByName);
-        let country = countryByName?.map(c => { // Tengo que hacer un map al countryByName porque llega como array
-            return {
-                id: c.cca3,
-                name: c.name.common,
-                image: c.flags[0],
-                capital: c.capital,
-                continent: c.continents[0],
-                subregion: c.subregion,
-                area: c.area,
-                population: c.population
+        const countryByName = await Country.findAll({
+            where: {
+                name: {[Op.iLike]: `%${name}%`}
+            },
+            include: Activity,
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
             }
-        })
-        // console.log(country);
-        return country;
+        });
+        // console.log(countryByName);
+        return countryByName;
     } catch (error) {
         console.log(error);
     }
@@ -51,29 +38,21 @@ const getCountryByName = async (name) => {
 
 const getCountryById = async (id) => {
     try {
-        const countryById = (await axios.get(`https://restcountries.com/v3/alpha/${id}`)).data;
-        console.log(countryById);
-        let country = countryById?.map(c => {
-            return {
-                id: c.cca3,
-                name: c.name.common,
-                image: c.flags[0],
-                capital: c.capital,
-                continent: c.continents[0],
-                subregion: c.subregion,
-                area: c.area,
-                population: c.population
+        const countryById = await Country.findByPk(id.toUpperCase(), {
+            include: Activity,
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
             }
         });
-        console.log(country);
-        return country;
+        console.log(countryById);
+        return countryById;
     } catch (error) {
         console.log(error);
     }
 }
 
 module.exports = {
-    getApiCountries,
+    getAllCountries,
     getCountryByName,
     getCountryById
 }

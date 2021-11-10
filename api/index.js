@@ -18,11 +18,31 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn, Country } = require('./src/db.js');
+const axios = require('axios');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+  server.listen(3001, async () => {
+    let aux = Country.findAll();
+    if(!aux.length) {
+      const apiCountries = (await axios.get('https://restcountries.com/v3/all')).data;
+      // console.log(apiCountries);
+      const allCountries = apiCountries.map(c => ({
+        id: c.cca3,
+        name: c.name.common,
+        image: c.flags[0],
+        capital: c.capital ? c.capital.join(', ') : '',
+        continent: c.continents[0],
+        subregion: c.subregion,
+        area: c.area,
+        population: c.population
+      }));
+
+      await Country.bulkCreate(allCountries);
+      // console.log(allCountries);
+    }
+    console.log('Preloaded Countries');
+    console.log("Listening at 3001"); // eslint-disable-line no-console
   });
 });
