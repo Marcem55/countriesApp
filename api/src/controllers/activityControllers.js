@@ -27,7 +27,13 @@ const postActivity = async (newActivity) => {
             season
         });
 
-        const fullActivity = await activity.setCountries(countries);
+        const activityCountries = await Country.findAll({
+            where: {
+                name: countries
+            }
+        })
+
+        const fullActivity = await activity.addCountry(activityCountries);
 
         return fullActivity;
     } catch (error) {
