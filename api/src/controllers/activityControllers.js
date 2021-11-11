@@ -1,17 +1,31 @@
 const { Activity, Country } = require('../db');
 
-const postActivity = async (newActivity) => {
+const getActivities = async () => {
     try {
-        const { name, difficulty, duration, season, countries } = newActivity;
-
-        const activity = await Activity.create({
-            name: name,
-            difficulty: difficulty,
-            duration: duration,
-            season: season
+        const activities = Activity.findAll({
+            include: {
+                model: Country
+            },
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
+            }
         });
-        await activity.addCountries(countries);
-        console.log(activity);
+        // console.log(activities);
+        return activities;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const postActivity = async (newActivity) => {
+    const { name, difficulty, duration, season } = newActivity;
+    try {
+        const activity = await Activity.create({
+            name,
+            difficulty,
+            duration,
+            season
+        })
         return activity;
     } catch (error) {
         console.log(error);
@@ -19,5 +33,6 @@ const postActivity = async (newActivity) => {
 }
 
 module.exports = {
-    postActivity
+    postActivity,
+    getActivities
 }
