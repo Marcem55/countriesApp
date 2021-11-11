@@ -1,5 +1,5 @@
 const { Router } =  require('express');
-const { postActivity } = require('../controllers/activityControllers');
+const { postActivity, getActivities } = require('../controllers/activityControllers');
 
 const router = Router();
 
@@ -15,13 +15,13 @@ router.post('/', async (req, res) => {
     }
 });
 
-// router.get('/', async (req, res) => {
-//     try {
-//         const activities = await getActivities();
-//         return res.status(200).json(activities);
-//     } catch (error) {
-//         return res.status(400).json({message: error});
-//     }
-// })
+router.get('/', async (req, res) => {
+    try {
+        const activities = await getActivities();
+        return res.status(200).json(activities);
+    } catch (error) {
+        return res.status(400).json({message: error});
+    }
+})
 
 module.exports = router;

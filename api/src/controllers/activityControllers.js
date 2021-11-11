@@ -18,15 +18,18 @@ const getActivities = async () => {
 }
 
 const postActivity = async (newActivity) => {
-    const { name, difficulty, duration, season } = newActivity;
+    const { name, difficulty, duration, season, countries } = newActivity;
     try {
         const activity = await Activity.create({
             name,
             difficulty,
             duration,
             season
-        })
-        return activity;
+        });
+
+        const fullActivity = await activity.setCountries(countries);
+
+        return fullActivity;
     } catch (error) {
         console.log(error);
     }
