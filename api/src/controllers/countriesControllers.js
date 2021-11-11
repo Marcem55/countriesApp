@@ -1,4 +1,3 @@
-const axios = require('axios');
 const { Sequelize } = require('sequelize');
 const Op = Sequelize.Op;
 const { Country, Activity } = require('../db');
