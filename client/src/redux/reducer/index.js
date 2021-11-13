@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_ACTIVITIES, GET_COUNTRY_DETAIL, POST_ACTIVITY } from "../actions/actionTypes";
+import { GET_ACTIVITIES, GET_COUNTRIES } from "../actions/actionTypes";
 
 const initialState = {
     countries: [],
@@ -12,6 +12,12 @@ const rootReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 countries: payload
+            }
+        
+        case GET_ACTIVITIES:
+            return {
+                ...state,
+                activities: payload
             }
         default:
             return state;
