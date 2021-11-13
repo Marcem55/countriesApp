@@ -28,7 +28,18 @@ const CountryDetail = () => {
                 <h4>{country?.subregion}</h4>
                 <p>{`${country?.area}km2`}</p>
                 <p>Population: {country?.population}</p>
-                <p>Activities: {country?.activity}</p>
+                <h3>Activities</h3>
+                {country?.activities.length > 0 ? country.activities.map(a => {
+                    return (
+                        <div>
+                            <p>{a.name}</p>
+                            <p>Difficulty: {a.difficulty}</p>
+                            <p>Duration: {a.duration}hs</p>
+                            <p>Season: {a.season}</p>
+                        </div>
+                    )
+                })
+                : <p>This country don't have activities yet</p>}
             </div>
 
         ) :
