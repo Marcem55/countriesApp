@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import NavBar from '../../components/NavBar/NavBar';
 import { clearPage, getCountryDetail } from '../../redux/actions/index';
 import './CountryDetail.css';
 
@@ -17,6 +18,7 @@ const CountryDetail = () => {
     
     return (
         <>
+        <NavBar />
         {country ? (
             <div>
                 <img src={country?.image} alt={country?.name}/>

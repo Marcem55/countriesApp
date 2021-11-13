@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import NavBar from '../../components/NavBar/NavBar';
 import constants from '../../constants';
 import { getActivities } from '../../redux/actions';
 import './CreateActivity.css';
@@ -66,6 +67,7 @@ const CreateActivity = () => {
 
     return (
         <div>
+            <NavBar />
             <h1>Add an activity!</h1>
             <form onSubmit={handleSubmit}>
                 <label>Name*</label>
