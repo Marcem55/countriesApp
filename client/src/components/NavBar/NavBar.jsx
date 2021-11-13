@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 
 const NavBar = () => {
     return (
-        <nav className='navBar'>
+        <nav className='navContainer'>
         <ul>
           <li>
             <Link to='/'>LOGO</Link>
@@ -13,9 +13,6 @@ const NavBar = () => {
           <li>
             <Link to='/home'>HOME</Link>
           </li>
-        </ul>
-        <input type="search" placeholder="Search country..."/>
-        <ul>
           <li>
             <Link to='/addActivity'>CREATE ACTIVITY</Link>
           </li>
