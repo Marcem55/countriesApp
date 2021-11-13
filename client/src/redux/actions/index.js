@@ -1,4 +1,4 @@
-import { GET_ACTIVITIES, GET_COUNTRIES } from "./actionTypes";
+import { CLEAR_PAGE, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_DETAIL } from "./actionTypes";
 import axios from 'axios';
 import constants from "../../constants";
 
@@ -19,5 +19,22 @@ export const getActivities = () => {
             type: GET_ACTIVITIES,
             payload: activities.data
         })
+    }
+}
+
+export const getCountryDetail = (id) => {
+    return async (dispatch) => {
+        const country = await axios.get(`${constants.COUNTRIES_URL}${id}`);
+        dispatch({
+            type: GET_COUNTRY_DETAIL,
+            payload: country.data
+        })
+    }
+}
+
+export const clearPage = () => {
+    return {
+        type: CLEAR_PAGE,
+        
     }
 }

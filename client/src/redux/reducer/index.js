@@ -1,4 +1,4 @@
-import { GET_ACTIVITIES, GET_COUNTRIES } from "../actions/actionTypes";
+import { CLEAR_PAGE, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_DETAIL } from "../actions/actionTypes";
 
 const initialState = {
     countries: [],
@@ -18,6 +18,16 @@ const rootReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 activities: payload
+            }
+        case GET_COUNTRY_DETAIL:
+            return {
+                ...state,
+                countryDetail: payload
+            }
+        case CLEAR_PAGE:
+            return {
+                ...state,
+                countryDetail: undefined
             }
         default:
             return state;

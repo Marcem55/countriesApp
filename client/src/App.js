@@ -7,6 +7,7 @@ import { getActivities, getCountries } from './redux/actions/index';
 import LandingPage from './views/LandingPage/LandingPage';
 import Home from './views/Home/Home';
 import CreateActivity from './views/CreateActivity/CreateActivity';
+import CountryDetail from './views/CountryDetail/CountryDetail';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
         <Route exact path='/' element={<LandingPage/>} />
         <Route exact path='/home' element={<Home/>} />
         <Route exact path='/addActivity' element={<CreateActivity/>} />
+        <Route exact path='/country/:id' element={<CountryDetail/>} />
       </Routes>
     </div>
     
