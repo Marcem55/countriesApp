@@ -1,0 +1,48 @@
+.searchBarContainer {
+    display: flex;
+    padding: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.searchContainer {
+    display: flex;
+}
+
+.loupe {
+    margin-right: .5rem;
+}
+
+.filterContainer {
+    display: flex;
+}
+
+.filter {
+    margin-right: .5rem;
+}
+
+.selectFilters {
+    margin-right: 2rem;
+}
+
+.order {
+    margin-right: .5rem;
+}
+
+.icon {
+    position: relative;
+    top: .2rem;
+}
+
+.btnContainer {
+    margin-left: -180px;
+}
+
+.btn {
+    padding: .6rem;
+    background-color: #6E2C00;
+    color: #F6DDCC;
+    border: 1px solid black;
+    border-radius: 2px;
+    cursor: pointer;
+}

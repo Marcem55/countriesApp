@@ -26,12 +26,12 @@ const CountryDetail = () => {
                 <h3>{country?.capital}</h3>
                 <h2>{country?.continent}</h2>
                 <h4>{country?.subregion}</h4>
-                <p>{`${country?.area}km2`}</p>
+                <p>{`${country?.area} kms2`}</p>
                 <p>Population: {country?.population}</p>
                 <h3>Activities</h3>
                 {country?.activities.length > 0 ? country.activities.map(a => {
                     return (
-                        <div>
+                        <div key={a.id}>
                             <p>{a.name}</p>
                             <p>Difficulty: {a.difficulty}</p>
                             <p>Duration: {a.duration}hs</p>

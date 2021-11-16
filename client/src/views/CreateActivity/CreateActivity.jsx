@@ -62,7 +62,7 @@ const CreateActivity = () => {
             season: '',
             countries: []
         });
-        dispatch(getActivities);
+        dispatch(getActivities());
     }
 
     return (

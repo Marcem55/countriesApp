@@ -1,0 +1,30 @@
+.landing {
+    height: 100vh;
+    width: 100%;
+    background-color: #F6DDCC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.landingTitle {
+    color: #6E2C00;
+}
+
+.link {
+    background-color: #6E2C00;
+    padding: 1rem;
+    color: #F6DDCC;
+    text-decoration: none;
+    width: fit-content;
+    margin-top: 2rem;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.link:hover {
+    background-color: #F6DDCC;
+    color: #6E2C00;
+    transition: .5s;
+}

@@ -1,4 +1,15 @@
 .navContainer {
-    background-color: black;
-    /* display: flex; */
+    background-color: #6E2C00;
+    padding: 1rem;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navLinks {
+    color: #F6DDCC;
+    text-decoration: none;
 }

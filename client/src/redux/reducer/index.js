@@ -1,7 +1,8 @@
-import { CLEAR_PAGE, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL } from "../actions/actionTypes";
+import { CLEAR_PAGE, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL } from "../actions/actionTypes";
 
 const initialState = {
     countries: [],
+    countriesCopy: [],
     activities: [],
     countryDetail: undefined
 }
@@ -11,7 +12,8 @@ const rootReducer = (state = initialState, {type, payload}) => {
         case GET_COUNTRIES:
             return {
                 ...state,
-                countries: payload
+                countries: payload,
+                countriesCopy: payload
             }
         
         case GET_ACTIVITIES:
@@ -24,16 +26,18 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 countryDetail: payload
             }
+        case CLEAR_PAGE:
+        return {
+            ...state,
+            countryDetail: undefined
+        }
         case GET_COUNTRIES_BY_NAME:
             return {
                 ...state,
                 countries: payload
             }
-        case CLEAR_PAGE:
-            return {
-                ...state,
-                countryDetail: undefined
-            }
+        case FILTER_CONTINENT:
+        
         default:
             return state;
     }

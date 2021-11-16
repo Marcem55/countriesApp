@@ -1,4 +1,4 @@
-import { CLEAR_PAGE, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL } from "./actionTypes";
+import { CLEAR_PAGE, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL } from "./actionTypes";
 import axios from 'axios';
 import constants from "../../constants";
 
@@ -45,6 +45,12 @@ export const getCountriesByName = (name) => {
 export const clearPage = () => {
     return {
         type: CLEAR_PAGE,
+    }
+}
 
+export const filterContinent = (payload) => {
+    return {
+        type: FILTER_CONTINENT,
+        payload
     }
 }
