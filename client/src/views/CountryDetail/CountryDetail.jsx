@@ -20,26 +20,34 @@ const CountryDetail = () => {
         <>
         <NavBar />
         {country ? (
-            <div>
-                <img src={country?.image} alt={country?.name}/>
-                <h1>{country?.name}</h1>
-                <h3>{country?.capital}</h3>
-                <h2>{country?.continent}</h2>
-                <h4>{country?.subregion}</h4>
-                <p>{`${country?.area} kms2`}</p>
-                <p>Population: {country?.population}</p>
-                <h3>Activities</h3>
-                {country?.activities.length > 0 ? country.activities.map(a => {
-                    return (
-                        <div key={a.id}>
-                            <p>{a.name}</p>
-                            <p>Difficulty: {a.difficulty}</p>
-                            <p>Duration: {a.duration}hs</p>
-                            <p>Season: {a.season}</p>
-                        </div>
-                    )
-                })
-                : <p>This country don't have activities yet</p>}
+            <div className='detailContainer'>
+                <img className='imgDetail' src={country?.image} alt={country?.name}/>
+                <div className='countryGeo'>
+                    <h3 className='name'>Name: <span>{country?.name}</span></h3>
+                    <h3 className='capital'>Capital: <span>{country?.capital}</span></h3>
+                    <h3 className='continent'>Continent: <span>{country?.continent}</span></h3>
+                    <h3 className='subregion'>Subregion: <span>{country?.subregion}</span></h3>
+                </div>
+                <div className='areaPopulationContainer'>
+                    <img src="https://img.icons8.com/metro/24/000000/area-chart.png"/>
+                    <p className='area'>{`Area: ${country?.area} kms2`}</p>
+                    <img src="https://img.icons8.com/material-rounded/26/000000/conference-call.png"/>
+                    <p className='population'>Population: {country?.population}</p>
+                </div>
+                <div className='activitiesContainer'>
+                    <h3 className='actTitle'>Activities</h3>
+                    {country?.activities.length > 0 ? country.activities.map(a => {
+                        return (
+                            <div key={a.id}>
+                                <p className='activityName'>• {a.name}</p>
+                                <p><span className='actStats'>Difficulty: </span>{a.difficulty}</p>
+                                <p><span className='actStats'>Duration: </span>{a.duration}hs</p>
+                                <p><span className='actStats'>Season: </span>{a.season}</p>
+                            </div>
+                        )
+                    })
+                    : <p>This country don't have activities yet</p>}
+                </div>
             </div>
 
         ) :

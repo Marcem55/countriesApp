@@ -1,0 +1,82 @@
+.detailContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin: 2rem;
+    background-color: #F6DDCC;
+    border: 1px solid #6E2C00;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(128,128,128,0.45);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(128,128,128,0.45);
+    box-shadow: 0px 5px 15px 0px rgba(128,128,128,0.45);
+    color: #6E2C00;
+    text-decoration: none;
+    align-self: center;
+}
+
+.imgDetail {
+    height: 250px;
+}
+
+.countryGeo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    text-align: left;
+    margin-right: -3rem;
+}
+
+span {
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.name {
+    margin-bottom: 1rem;
+}
+
+.capital {
+    margin-bottom: 1rem;
+}
+
+.continent {
+    margin-bottom: 1rem;
+}
+
+.areaPopulationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    width: 30%;
+}
+
+.area {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.population {
+    margin-top: 1rem;
+}
+
+.activitiesContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.actTitle {
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+
+.activityName {
+    margin: 1rem 0 .5rem 0;
+    font-size: 20px;
+}
+
+.actStats {
+    font-weight: 600;
+}
