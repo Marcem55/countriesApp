@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterContinent } from '../../redux/actions';
+import { orderByName, filterActivity, filterContinent } from '../../redux/actions';
 import './SearchAndFilterBar.css';
 
 const SearchAndFilterBar = () => {
@@ -9,26 +9,26 @@ const SearchAndFilterBar = () => {
     const activities = useSelector(state => state.activities);
 
     const handleFilters = (e) => {
-        const continent = e.target.value;
-        dispatch(filterContinent(continent));
+        dispatch(filterContinent(e.target.value));
+        // dispatch(filterActivity(e.target.value));
     }
 
     const handleOrders = (e) => {
-
+        dispatch(orderByName(e.target.value));
     }
 
     return (
         <div className='searchBarContainer'>
             <div className='searchContainer'>
-                <label className='loupe'><img className='icon' src="https://img.icons8.com/material-rounded/24/000000/search.png"/></label>
+                <label className='loupe'><img className='icon' src="https://img.icons8.com/material-rounded/24/000000/search.png" alt='loupe'/></label>
                 <input className='search' type="search" placeholder='Search Countries...'/>
             </div>
             <div className='filterContainer'>
-                <label className='filter'><img className='icon' src="https://img.icons8.com/material-rounded/24/000000/sorting-options.png"/></label>
+                <label className='filter'><img className='icon' src="https://img.icons8.com/material-rounded/24/000000/sorting-options.png" alt='filter'/></label>
                 <select className='selectFilters' name="filters" onChange={handleFilters}>
+                        <option value="All">All</option>
                     <optgroup label='By Continent'>
                         <option defaultValue disabled selected hidden>Filter</option>
-                        <option value="All">All</option>
                         <option value="North America">North America</option>
                         <option value="South America">South America</option>
                         <option value="Antarctica">Antarctica</option>
@@ -46,12 +46,12 @@ const SearchAndFilterBar = () => {
                         : <option disabled>No activities</option>}
                     </optgroup>
                 </select>
-                <label className='order'><img className='icon' src="https://img.icons8.com/material-sharp/24/000000/sort.png"/></label>
+                <label className='order'><img className='icon' src="https://img.icons8.com/material-sharp/24/000000/sort.png" alt='order'/></label>
                 <select name="orders" onChange={handleOrders}>
                 <optgroup label='By Name'>
                         <option defaultValue disabled selected hidden>Order</option>
-                        <option value="ASC">A-Z</option>
-                        <option value="DES">Z-A</option>
+                        <option value="A-Z">A-Z</option>
+                        <option value="Z-A">Z-A</option>
                     </optgroup>
                     <optgroup label='By Population'>
                         <option value="More">More</option>

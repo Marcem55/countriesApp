@@ -1,0 +1,16 @@
+.pagination {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pageBtn {
+    background-color: #6E2C00;
+    color: #F6DDCC;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 0 .5rem;
+}

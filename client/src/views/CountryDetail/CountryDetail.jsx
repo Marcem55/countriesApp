@@ -29,9 +29,9 @@ const CountryDetail = () => {
                     <h3 className='subregion'>Subregion: <span>{country?.subregion}</span></h3>
                 </div>
                 <div className='areaPopulationContainer'>
-                    <img src="https://img.icons8.com/metro/24/000000/area-chart.png"/>
+                    <img src="https://img.icons8.com/metro/24/000000/area-chart.png" alt='area'/>
                     <p className='area'>{`Area: ${country?.area} kms2`}</p>
-                    <img src="https://img.icons8.com/material-rounded/26/000000/conference-call.png"/>
+                    <img src="https://img.icons8.com/material-rounded/26/000000/conference-call.png" alt='population'/>
                     <p className='population'>Population: {country?.population}</p>
                 </div>
                 <div className='activitiesContainer'>
