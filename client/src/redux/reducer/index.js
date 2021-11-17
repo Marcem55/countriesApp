@@ -1,4 +1,4 @@
-import { CLEAR_PAGE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL, ORDER } from "../actions/actionTypes";
+import { CLEAR_PAGE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL, ORDER, RESET_FILTERS } from "../actions/actionTypes";
 
 const initialState = {
     countries: [],
@@ -42,7 +42,11 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 countriesCopy: payload === 'All' ? state.countries : continentFilteredCountries
             }
         case FILTER_ACTIVITY:
-            
+            const activitiesName = state.activities?.map(activity => activity.name);
+            return {
+                ...state,
+                countriesCopy: payload === 'All' ? state.countries : null
+            }
         case ORDER:
             if(payload === 'A-Z') {
                 return {
@@ -64,6 +68,11 @@ const rootReducer = (state = initialState, {type, payload}) => {
                     ...state,
                     countriesCopy: [...state.countriesCopy.sort((a, b) => b.population > a.population ? 1 : b.population < a.population ? -1 : 0)]
                 }
+            }
+        case RESET_FILTERS:
+            return {
+                ...state,
+                countriesCopy: state.countries
             }
         default:
             return state;

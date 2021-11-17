@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { orderByName, filterActivity, filterContinent, orderByPopulation, getCountriesByName } from '../../redux/actions';
+import { orderByName, filterActivity, filterContinent, getCountriesByName, resetFilters } from '../../redux/actions';
 import './SearchAndFilterBar.css';
 
 const SearchAndFilterBar = () => {
@@ -19,15 +19,21 @@ const SearchAndFilterBar = () => {
         setCountry('');
     }
 
-    const handleFilters = (e) => {
+    const handleContinentFilter = (e) => {
         dispatch(filterContinent(e.target.value));
-        // dispatch(filterActivity(e.target.value));
-        console.log();
+    }
+
+    const handleActivityFilter = (e) => {
+        dispatch(filterActivity(e.target.value));
     }
 
     const handleOrders = (e) => {
         dispatch(orderByName(e.target.value));
-        // dispatch(orderByPopulation(e.target.value));
+    }
+
+    const onClick = () => {
+        dispatch(resetFilters());
+        // Hacer que los inputs vuelvan a su value inicial
     }
 
     return (
@@ -40,26 +46,26 @@ const SearchAndFilterBar = () => {
             </div>
             <div className='filterContainer'>
                 <label className='filter'><img className='icon' src="https://img.icons8.com/material-rounded/24/000000/sorting-options.png" alt='filter'/></label>
-                <select className='selectFilters' name="filters" onChange={handleFilters}>
-                        <option value="All">All</option>
-                    <optgroup label='By Continent'>
-                        <option defaultValue disabled selected hidden>Filter</option>
-                        <option value="North America">North America</option>
-                        <option value="South America">South America</option>
-                        <option value="Antarctica">Antarctica</option>
-                        <option value="Europe">Europe</option>
-                        <option value="Africa">Africa</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Oceania">Oceania</option>
-                    </optgroup>
-                    <optgroup label='By Activity'>
+                <select className='selectFilters' name="filters" onChange={handleContinentFilter}>
+                    <option defaultValue disabled selected hidden>Filter By Continent</option>
+                    <option value="All">All</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                    <option value="Antarctica">Antarctica</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
+                <select className='selectFilters' name='filters' onChange={handleActivityFilter}>
+                    <option defaultValue disabled selected hidden>Filter By Activity</option>
+                    <option value="All">All</option>
                         {activities.length > 0 ? activities.map(a => {
                             return (
                                 <option key={a.id} value={a.name}>{a.name}</option>
                             )
                         })
                         : <option disabled>No activities</option>}
-                    </optgroup>
                 </select>
                 <label className='order'><img className='icon' src="https://img.icons8.com/material-sharp/24/000000/sort.png" alt='order'/></label>
                 <select name="orders" onChange={handleOrders}>
@@ -75,7 +81,7 @@ const SearchAndFilterBar = () => {
                 </select>
             </div>
             <div className='btnContainer'>
-                <button className='btn'>Reset Filters</button>
+                <button className='btn' onClick={onClick}>Reset Filters</button>
             </div>
         </div>
     )

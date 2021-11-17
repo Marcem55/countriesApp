@@ -51,9 +51,9 @@ const CreateActivity = () => {
         });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post(`${constants.ACTIVITIES_URL}`, activity);
+        await axios.post(`${constants.ACTIVITIES_URL}`, activity);
         // console.log(activity);
         setActivity({
             name: '',
