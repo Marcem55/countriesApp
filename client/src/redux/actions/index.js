@@ -1,4 +1,4 @@
-import { CLEAR_PAGE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL, ORDER_BY_NAME, ORDER_BY_POPULATION } from "./actionTypes";
+import { CLEAR_PAGE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL, ORDER } from "./actionTypes";
 import axios from 'axios';
 import constants from "../../constants";
 
@@ -64,14 +64,7 @@ export const filterActivity = (payload) => {
 
 export const orderByName = (payload) => {
     return {
-        type: ORDER_BY_NAME,
-        payload
-    }
-}
-
-export const orderByPopulation = (payload) => {
-    return {
-        type: ORDER_BY_POPULATION,
+        type: ORDER,
         payload
     }
 }

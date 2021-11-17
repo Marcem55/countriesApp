@@ -9,7 +9,6 @@ const SearchAndFilterBar = () => {
     const activities = useSelector(state => state.activities);
     const [country, setCountry] = useState('');
 
-
     const handleChange = (e) => {
         setCountry(e.target.value);
     }
@@ -28,7 +27,7 @@ const SearchAndFilterBar = () => {
 
     const handleOrders = (e) => {
         dispatch(orderByName(e.target.value));
-        dispatch(orderByPopulation(e.target.value));
+        // dispatch(orderByPopulation(e.target.value));
     }
 
     return (

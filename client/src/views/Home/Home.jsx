@@ -7,7 +7,7 @@ import './Home.css';
 
 const Home = () => {
     const countries = useSelector(state => state.countriesCopy);
-    // console.log(countries);
+    console.log(countries);
 
     // PAGINACION
     // Estado para pagina actual

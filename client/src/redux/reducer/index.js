@@ -1,4 +1,4 @@
-import { CLEAR_PAGE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL, ORDER_BY_NAME, ORDER_BY_POPULATION } from "../actions/actionTypes";
+import { CLEAR_PAGE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL, ORDER } from "../actions/actionTypes";
 
 const initialState = {
     countries: [],
@@ -43,17 +43,27 @@ const rootReducer = (state = initialState, {type, payload}) => {
             }
         case FILTER_ACTIVITY:
             
-        case ORDER_BY_NAME:
-            const orderedNameCountries = state.countriesCopy.sort((a, b) => a.name > b.name ? 1 : a.name < b.name ? -1 : 0);
-            return {
-                ...state,
-                countriesCopy: payload === 'A-Z' ? orderedNameCountries : orderedNameCountries.reverse()
-            }
-        case ORDER_BY_POPULATION:
-            const orderedPopulationCountries = state.countriesCopy.sort((a, b) => a.population > b.population ? 1 : a.population < b.population ? -1 : 0);
-            return {
-                ...state,
-                countriesCopy: payload === 'Less' ? orderedPopulationCountries : orderedPopulationCountries.reverse()
+        case ORDER:
+            if(payload === 'A-Z') {
+                return {
+                    ...state,
+                    countriesCopy: [...state.countriesCopy.sort((a, b) => a.name > b.name ? 1 : a.name < b.name ? -1 : 0)]
+                }
+            } else if(payload === 'Z-A'){
+                return {
+                    ...state,
+                    countriesCopy: [...state.countriesCopy.sort((a, b) => b.name > a.name ? 1 : b.name < a.name ? -1 : 0)]
+                }
+            } else if(payload === 'Less') {
+                return {
+                    ...state,
+                    countriesCopy: [...state.countriesCopy.sort((a, b) => a.population > b.population ? 1 : a.population < b.population ? -1 : 0)]
+                }
+            } else {
+                return {
+                    ...state,
+                    countriesCopy: [...state.countriesCopy.sort((a, b) => b.population > a.population ? 1 : b.population < a.population ? -1 : 0)]
+                }
             }
         default:
             return state;
