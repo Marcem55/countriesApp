@@ -1,0 +1,98 @@
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin: 2rem 20%;
+    background-color: #F6DDCC;
+    border: 1px solid #6E2C00;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(128,128,128,0.45);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(128,128,128,0.45);
+    box-shadow: 0px 5px 15px 0px rgba(128,128,128,0.45);
+    color: #6E2C00;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.formTitle {
+    padding-bottom: 1rem;
+}
+
+.diffDuration {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 4rem;
+    margin: 2rem 0;
+}
+
+.difficulty {
+    display: flex;
+    flex-direction: column;
+}
+
+.duration {
+    display: flex;
+    flex-direction: column;
+}
+
+.formInputs {
+    padding: .4rem;
+}
+
+.countriesList {
+    display: flex;
+    flex-direction: column;
+}
+
+.countryItem {
+    padding: .4rem;
+}
+
+.addBtn {
+    padding: .6rem;
+    background-color: #6E2C00;
+    color: #F6DDCC;
+    border: 1px solid black;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.disabled {
+    background-color: rgba(128,128,128,0.45);
+    color: black;
+    pointer-events: none;
+}
+
+label {
+    margin-bottom: .5rem;
+}
+
+.select {
+    margin-bottom: 2rem;
+}
+
+.danger {
+    color: red;
+    font-size: 13px;
+    padding-top: .5rem;
+    text-align: left;
+}
+
+.spacing {
+    margin-bottom: 1rem;
+    margin-top: -1rem;
+}
+
+.deleteBtn {
+    margin-left: .5rem;
+    border: .5px solid black;
+    font-size: 10px;
+    border-radius: 10px;
+    background-color: rgba(241, 50, 50, 0.712);
+    cursor: pointer;
+}
