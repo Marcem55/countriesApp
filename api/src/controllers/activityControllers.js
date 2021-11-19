@@ -31,7 +31,7 @@ const postActivity = async (newActivity) => {
             where: {
                 name: countries
             }
-        })
+        });
 
         const fullActivity = await activity.addCountry(activityCountries);
 

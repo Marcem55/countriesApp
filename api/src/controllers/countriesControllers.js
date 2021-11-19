@@ -8,7 +8,8 @@ const getAllCountries = async () => {
         const allCountries = await Country.findAll({
             attributes: {
                 exclude: ['createdAt', 'updatedAt']
-            }
+            },
+            include: Activity
         });
         return allCountries;
     } catch (error) {

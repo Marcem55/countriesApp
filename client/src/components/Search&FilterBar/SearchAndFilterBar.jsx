@@ -33,7 +33,7 @@ const SearchAndFilterBar = () => {
 
     const onClick = () => {
         dispatch(resetFilters());
-        // Hacer que los inputs vuelvan a su value inicial
+        // Falta hacer que los inputs vuelvan a su value inicial
     }
 
     return (

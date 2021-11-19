@@ -42,10 +42,18 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 countriesCopy: payload === 'All' ? state.countries : continentFilteredCountries
             }
         case FILTER_ACTIVITY:
-            const activitiesName = state.activities?.map(activity => activity.name);
+            // const countriesWithActivities = state.countriesCopy.filter(c => c.activities.length > 0 ? (c.activities.filter(activity => {
+            //     return activity.name.includes(payload);
+            // })) : null);
+            // console.log(countriesWithActivities);
+            // const filteredCountries = countriesWithActivities.filter(country => {
+            //     country.activities.map(activity => activity.name === payload);
+            // });
+            const countriesWithActivities = state.countries.filter(country => country.activities.find(activity => activity.name === payload));
+            console.log(countriesWithActivities);
             return {
                 ...state,
-                countriesCopy: payload === 'All' ? state.countries : null
+                countriesCopy: payload === 'All' ? state.countries : countriesWithActivities
             }
         case ORDER:
             if(payload === 'A-Z') {
