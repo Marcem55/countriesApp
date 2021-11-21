@@ -1,4 +1,4 @@
-import { CLEAR_PAGE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL, ORDER, RESET_FILTERS } from "./actionTypes";
+import { CLEAR_PAGE, FILTER_ACTIVITY, FILTER_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAIL, ORDER, RESET_FILTERS, SET_PAGE } from "./actionTypes";
 import axios from 'axios';
 import constants from "../../constants";
 
@@ -72,5 +72,11 @@ export const orderByName = (payload) => {
 export const resetFilters = () => {
     return {
         type: RESET_FILTERS,
+    }
+}
+
+export const setPage = () => {
+    return {
+        type: SET_PAGE,
     }
 }

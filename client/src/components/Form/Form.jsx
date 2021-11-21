@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import constants from '../../constants';
 import { getActivities, getCountries } from '../../redux/actions';
@@ -32,12 +32,23 @@ const Form = () => {
         season: '',
         countries: [] // ['Argentina', 'Brazil', 'Polonia']
     });
+    // console.log(activity);
+    
     const [errors, setErrors] = useState({
         name: '',
         difficulty: '',
         duration: '',
         countries: ''
     });
+    // console.log(errors);
+
+    const [button, setButton] = useState(true);
+
+    useEffect(() => {
+        activity.name && activity.difficulty && activity.duration && activity.countries.length > 0
+            ? setButton(false)
+            : setButton(true)
+    }, [activity]);
 
     const validateName = (name) => {
         if(name.length < 5 || name.length > 20) {
@@ -81,27 +92,28 @@ const Form = () => {
         }
     }
 
-    const validateCountries = (countries) => {
-        if(countries === []) {
-            setErrors({
-                ...errors,
-                countries: 'Almost one country has to be selected'
-            });
-        } else {
-            setErrors({
-                ...errors,
-                countries: ''
-            });
-        }
-    }
+    // const validateCountries = (countries) => {
+    //     // console.log(country);
+    //     if(countries.length < 1) {
+    //         setErrors({
+    //             ...errors,
+    //             countries: 'Almost one country has to be selected'
+    //         });
+    //     } else {
+    //         setErrors({
+    //             ...errors,
+    //             countries: ''
+    //         });
+    //     }
+    // }
 
-    const disabledButton = () => {
-        if(errors.name !== '' || errors.difficulty !== '' || errors.duration !== '' || errors.countries !== '') {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // const disabledButton = () => {
+    //     if(errors.name !== '' || errors.difficulty !== '' || errors.duration !== '' || errors.countries !== '') {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     const handleChange = (e) => {
         if(e.target.name === 'name') {
@@ -121,12 +133,18 @@ const Form = () => {
     const handleSelect = (e) => {
         const countryName = e.target.value;
         // console.log(countryName);
-        validateCountries(e.target.value);
-        setActivity({
-            ...activity,
-            countries: [...activity.countries, countryName]
-        });
+        if(activity.countries.includes(countryName)) {
+            alert('Choose another country');
+        } else {
+
+            setActivity({
+                ...activity,
+                countries: [...activity.countries, countryName]
+            });
+        }
+        // validateCountries(activity.countries);
     }
+    console.log(activity.countries);
 
     const deleteCountry = (name) => {
         let filteredCountries = activity.countries.filter(country => country !== name);
@@ -139,6 +157,19 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(
+            activity.name === '' 
+            || activity.difficulty === '' 
+            || activity.duration === '' 
+            || activity.duration === 0 
+            || activity.countries.length < 1 
+            || errors.name !== '' 
+            || errors.difficulty !== '' 
+            || errors.duration !== '' 
+            || errors.countries !== '') {
+            alert('Please, check the fields');
+            return;
+        }
         await axios.post(`${constants.ACTIVITIES_URL}`, activity);
         // console.log(activity);
         setActivity({
@@ -148,7 +179,6 @@ const Form = () => {
             season: '',
             countries: []
         });
-        // e.target.reset();
         dispatch(getActivities());
         dispatch(getCountries());
         alert('Created!');
@@ -183,8 +213,8 @@ const Form = () => {
                     <option value='Summer'>Summer</option>
                 </select>
                 <label>Countries*</label>
-                <select className='select formInputs' name="countries" onChange={handleSelect}>
-                    <option defaultValue disabled selected>Select Countries</option>
+                <select value='Select Countries' className='select formInputs' name="countries" onChange={handleSelect}>
+                    <option disabled selected>Select Countries</option>
                     {orderedCountries.map(country => 
                         <option value={country.name} key={country.id}>
                             {country.name}
@@ -192,8 +222,9 @@ const Form = () => {
                     )}
                 </select>
                 {errors.countries !== '' ? <p className='danger'>{errors.countries}</p> : null}
-                <p className='danger spacing'>(*) required field</p>
-                {disabledButton() === true ? <button className='addBtn disabled' type='submit' disabled>Add!</button> : <button className='addBtn' type='submit'>Add!</button>}
+                <p className='danger spacing'>(*) required fields</p>
+                {/* {disabledButton() === true ? <button className='addBtn disabled' type='submit' disabled>Add!</button> : <button className='addBtn' type='submit'>Add!</button>} */}
+                <button disabled={button} type='submit' className={button === false ? 'addBtn' : 'disabled'}>Add</button>
             </form>
             <ul className='countriesList'>
                 {activity.countries.length > 0 ? activity.countries.map(country => <li className='countryItem' key={country}>• {country}<button className='deleteBtn' onClick={() => deleteCountry(country)}>X</button></li>) : null}

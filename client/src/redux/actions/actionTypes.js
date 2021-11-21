@@ -7,3 +7,4 @@ export const FILTER_CONTINENT = "FILTER_CONTINENT";
 export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
 export const ORDER = "ORDER";
 export const RESET_FILTERS = "RESET_FILTERS";
+export const SET_PAGE = "SET_PAGE";
