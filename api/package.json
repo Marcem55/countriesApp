@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -L",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "test": "mocha -w ./tests/**/*.spec.js",
+    "standard": "npx standard */**/*{.js,.jsx}",
+    "standard-fix": "npx standard */**/*{.js,.jsx} --fix"
   },
   "author": "Henry",
   "license": "ISC",
@@ -24,7 +26,8 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "standard": "^16.0.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",

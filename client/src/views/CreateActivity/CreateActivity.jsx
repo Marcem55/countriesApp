@@ -1,15 +1,15 @@
-import React from 'react';
-import Form from '../../components/Form/Form';
-import NavBar from '../../components/NavBar/NavBar';
-import './CreateActivity.css';
+import React from 'react'
+import Form from '../../components/Form/Form'
+import NavBar from '../../components/NavBar/NavBar'
+import './CreateActivity.css'
 
 const CreateActivity = () => {
-    return (
-        <>
-            <NavBar />
-            <Form />
-        </>
-    )
+  return (
+    <>
+      <NavBar />
+      <Form />
+    </>
+  )
 }
 
-export default CreateActivity;
+export default CreateActivity
