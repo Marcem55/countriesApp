@@ -14,7 +14,7 @@ const Home = () => {
   // Estado para cantidad de cards por pagina
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(10)
+  const [itemsPerPage] = useState(10)
   // const [itemsPageOne] = useState(9);
 
   // Necesito 3 variables para saber cuantas paginas voy a necesitar
@@ -32,11 +32,6 @@ const Home = () => {
   const pagination = (e, page) => {
     e.preventDefault()
     setCurrentPage(page)
-    if (page === 1) {
-      setItemsPerPage(9)
-    } else {
-      setItemsPerPage(10)
-    }
   }
 
   const renderPages = pages.map(page => (
@@ -48,6 +43,8 @@ const Home = () => {
       </div>
     </li>
   ))
+
+  // SI CAMBIAN LOS FILTROS, QUE RESETEE LA PAGINACION
 
   return (
     <div className='home'>

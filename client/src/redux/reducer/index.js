@@ -4,8 +4,7 @@ const initialState = {
   countries: [],
   countriesCopy: [],
   activities: [],
-  countryDetail: undefined,
-  page: 1
+  countryDetail: undefined
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
