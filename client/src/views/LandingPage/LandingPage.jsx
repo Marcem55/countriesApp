@@ -5,7 +5,8 @@ import './LandingPage.css';
 const LandingPage = () => {
     return (
         <div className='landing'>
-            <h1 className='landingTitle'>Welcome to CountriesApp</h1>
+            <h1 className='landingTitle'>Welcome to World Tour</h1>
+            <p className='aboutText'>Find information about all countries and create tourist activities for them!</p>
             <Link className='link' to='/home'>Go to Home</Link>
         </div>
     )

@@ -92,29 +92,6 @@ const Form = () => {
         }
     }
 
-    // const validateCountries = (countries) => {
-    //     // console.log(country);
-    //     if(countries.length < 1) {
-    //         setErrors({
-    //             ...errors,
-    //             countries: 'Almost one country has to be selected'
-    //         });
-    //     } else {
-    //         setErrors({
-    //             ...errors,
-    //             countries: ''
-    //         });
-    //     }
-    // }
-
-    // const disabledButton = () => {
-    //     if(errors.name !== '' || errors.difficulty !== '' || errors.duration !== '' || errors.countries !== '') {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
     const handleChange = (e) => {
         if(e.target.name === 'name') {
             validateName(e.target.value);
@@ -134,9 +111,8 @@ const Form = () => {
         const countryName = e.target.value;
         // console.log(countryName);
         if(activity.countries.includes(countryName)) {
-            alert('Choose another country');
+            alert(`${countryName} is already selected`);
         } else {
-
             setActivity({
                 ...activity,
                 countries: [...activity.countries, countryName]
@@ -190,7 +166,7 @@ const Form = () => {
             <form className='form' onSubmit={handleSubmit}>
                 <h1 className='formTitle'>Add an activity!</h1>
                 <label>Name*</label>
-                <input className='formInputs' type="text" value={activity.name} name='name' onChange={handleChange}/>
+                <input className='formInputs' type="text" value={activity.name} name='name' onChange={handleChange} autoComplete='off'/>
                 {errors.name !== '' ? <p className='danger'>{errors.name}</p> : null}
                 <div className='diffDuration'>
                     <div className='difficulty'>
@@ -206,7 +182,7 @@ const Form = () => {
                 </div>
                 <label>Season</label>
                 <select className='select formInputs' name="season" onChange={handleChange}>
-                    <option defaultValue disabled selected>Select Season</option>
+                    <option disabled selected>Select Season</option>
                     <option value='Autumn'>Autumn</option>
                     <option value='Winter'>Winter</option>
                     <option value='Spring'>Spring</option>

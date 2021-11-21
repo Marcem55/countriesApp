@@ -1,5 +1,5 @@
 .navContainer {
-    background-color: #6E2C00;
+    background-color: #90400C;
     padding: 1rem;
 }
 
@@ -12,4 +12,18 @@ ul {
 .navLinks {
     color: #F6DDCC;
     text-decoration: none;
+    color: black;
+}
+
+.addAct {
+    display: flex;
+    align-items: center;
+}
+
+.add {
+    margin-right: .4rem;
+}
+
+.noScroll {
+    overflow: hidden;
 }
