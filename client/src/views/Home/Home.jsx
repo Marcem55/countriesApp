@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Cards from '../../components/Cards/Cards'
 import NavBar from '../../components/NavBar/NavBar'
@@ -7,7 +7,7 @@ import './Home.css'
 
 const Home = () => {
   const countries = useSelector(state => state.countriesCopy)
-  console.log(countries)
+  // console.log(countries)
 
   // PAGINACION
   // Estado para pagina actual
@@ -17,7 +17,7 @@ const Home = () => {
   const [itemsPerPage] = useState(10)
   // const [itemsPageOne] = useState(9);
 
-  // Necesito 3 variables para saber cuantas paginas voy a necesitar
+  // Necesito 3 variables para saber cuantas paginas voy a tener
   const lastItemPerPage = currentPage * itemsPerPage
   const firstItemPerPage = lastItemPerPage - itemsPerPage
   const currentPageItems = countries?.slice(firstItemPerPage, lastItemPerPage)
@@ -45,12 +45,16 @@ const Home = () => {
   ))
 
   // SI CAMBIAN LOS FILTROS, QUE RESETEE LA PAGINACION
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [countries])
+
 
   return (
     <div className='home'>
       <NavBar />
       <SearchAndFilterBar />
-      <Cards countries={currentPageItems} />
+      {currentPageItems.length > 0 ? <Cards countries={currentPageItems} /> : <div className='notFound'><h3 className='notFoundP'>Country not found, search again</h3><iframe src='https://giphy.com/embed/UOdoMz3baCENO' width='360' height='240' frameBorder='0' class='giphy-embed' allowFullScreen /></div>}
       <ul className='pagination'>
         {renderPages}
       </ul>

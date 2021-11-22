@@ -48,7 +48,7 @@ const CountryDetail = () => {
                         </div>
                     )
                   })
-                : <p>This country don't have activities yet</p>}
+                : <p>This country doesn't have activities yet</p>}
             </div>
           </div>
 

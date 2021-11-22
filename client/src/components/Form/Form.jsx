@@ -156,7 +156,7 @@ const Form = () => {
     })
     dispatch(getActivities())
     dispatch(getCountries())
-    alert('Created!') // eslint
+    alert('Created!')
   }
   // console.log(activity.countries);
 
