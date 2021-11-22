@@ -132,6 +132,22 @@ const Form = () => {
     })
   }
 
+  const resetSelects = () => {
+    document.getElementById('selectSeason').value = 'defaultValue'
+    document.getElementById('selectCountries').value = 'defaultValue'
+  }
+
+  // FALTA HACER QUE SI ES EL MISMO NOMBRE DE ACTIVIDAD, LE SUME LOS PAISES NUEVOS
+  const validateActivity = (name) => {
+    const actToValidate = activities.filter(act => act.name === name)
+    console.log(actToValidate)
+    if (actToValidate.length > 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (
@@ -147,23 +163,28 @@ const Form = () => {
       alert('Please, check the fields')
       return
     }
-    const actToValidate = activities.filter(act => act.name === activity.name)
-    console.log(actToValidate)
 
-    await axios.post(`${constants.ACTIVITIES_URL}`, activity)
-    // console.log(activity);
-    setActivity({
-      name: '',
-      difficulty: 1,
-      duration: 0,
-      season: '',
-      countries: []
-    })
-    dispatch(getActivities())
-    dispatch(getCountries())
-    alert('Created!')
+    if (validateActivity(activity.name)) {
+      alert(`${activity.name} already exists`)
+    } else {
+      await axios.post(`${constants.ACTIVITIES_URL}`, activity)
+      // console.log(activity);
+      setActivity({
+        name: '',
+        difficulty: 1,
+        duration: 0,
+        season: '',
+        countries: []
+      })
+      dispatch(getActivities())
+      dispatch(getCountries())
+      alert('Created!')
+      resetSelects()
+    }
   }
   // console.log(activity.countries);
+
+  
 
   return (
     <div className='formContainer'>
@@ -185,16 +206,16 @@ const Form = () => {
           </div>
         </div>
         <label>Season</label>
-        <select className='select formInputs' name='season' onChange={handleChange}>
-          <option disabled selected>Select Season</option>
+        <select id='selectSeason' className='select formInputs' name='season' onChange={handleChange}>
+          <option value='defaultValue' disabled selected>Select Season</option>
           <option value='Autumn'>Autumn</option>
           <option value='Winter'>Winter</option>
           <option value='Spring'>Spring</option>
           <option value='Summer'>Summer</option>
         </select>
         <label>Countries*</label>
-        <select value='Select Countries' className='select formInputs' name='countries' onChange={handleSelect}>
-          <option disabled selected>Select Countries</option>
+        <select id='selectCountries' className='select formInputs' name='countries' onChange={handleSelect}>
+          <option value='defaultValue' disabled selected>Select Countries</option>
           {orderedCountries.map(country =>
             <option value={country.name} key={country.id}>
               {country.name}

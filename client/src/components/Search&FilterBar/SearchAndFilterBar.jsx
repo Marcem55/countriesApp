@@ -17,6 +17,7 @@ const SearchAndFilterBar = () => {
     e.preventDefault()
     dispatch(getCountriesByName(country))
     setCountry('')
+    resetSelectsFilters()
   }
 
   const handleContinentFilter = (e) => {
@@ -34,6 +35,10 @@ const SearchAndFilterBar = () => {
   const onClick = () => {
     dispatch(resetFilters())
     // Falta hacer que los inputs vuelvan a su value inicial
+    resetSelectsFilters()
+  }
+
+  const resetSelectsFilters = () => {
     document.getElementById('selectContinent').value = 'defaultValue'
     document.getElementById('selectActivity').value = 'defaultValue'
     document.getElementById('selectOrder').value = 'defaultValue'
