@@ -15,6 +15,8 @@ const Form = () => {
     } */
   const dispatch = useDispatch()
   const countries = useSelector(state => state.countries)
+  const activities = useSelector(state => state.activities)
+  console.log(activities)
 
   const countriesToOrder = countries.map(country => {
     return {
@@ -119,7 +121,7 @@ const Form = () => {
     }
     // validateCountries(activity.countries);
   }
-  console.log(activity.countries)
+  // console.log(activity.countries)
 
   const deleteCountry = (name) => {
     const filteredCountries = activity.countries.filter(country => country !== name)
@@ -145,6 +147,9 @@ const Form = () => {
       alert('Please, check the fields')
       return
     }
+    const actToValidate = activities.filter(act => act.name === activity.name)
+    console.log(actToValidate)
+
     await axios.post(`${constants.ACTIVITIES_URL}`, activity)
     // console.log(activity);
     setActivity({
@@ -202,7 +207,7 @@ const Form = () => {
         <button disabled={button} type='submit' className={button === false ? 'addBtn' : 'disabled'}>Add</button>
       </form>
       <ul className='countriesList'>
-        {activity.countries.length > 0 ? activity.countries.map(country => <li className='countryItem' key={country}>• {country}<button className='deleteBtn' onClick={() => deleteCountry(country)}>X</button></li>) : null}
+        {activity.countries.length > 0 ? activity.countries.map(country => <li className='countryItem' key={country}>• <button className='deleteBtn' onClick={() => deleteCountry(country)}>X</button> {country}</li>) : null}
       </ul>
     </div>
   )

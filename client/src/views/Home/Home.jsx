@@ -49,12 +49,11 @@ const Home = () => {
     setCurrentPage(1)
   }, [countries])
 
-
   return (
     <div className='home'>
       <NavBar />
       <SearchAndFilterBar />
-      {currentPageItems.length > 0 ? <Cards countries={currentPageItems} /> : <div className='notFound'><h3 className='notFoundP'>Country not found, search again</h3><iframe src='https://giphy.com/embed/UOdoMz3baCENO' width='360' height='240' frameBorder='0' class='giphy-embed' allowFullScreen /></div>}
+      {currentPageItems.length > 0 ? <Cards countries={currentPageItems} /> : <div className='notFound'><h3 className='notFoundP'>Country not found</h3><iframe src='https://giphy.com/embed/UOdoMz3baCENO' width='360' height='240' frameBorder='0' class='giphy-embed' allowFullScreen /></div>}
       <ul className='pagination'>
         {renderPages}
       </ul>

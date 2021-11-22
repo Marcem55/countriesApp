@@ -41,11 +41,11 @@ const CountryDetail = () => {
                 ? country.activities.map(a => {
                     return (
                       <div key={a.id}>
-                          <p className='activityName'>• {a.name}</p>
-                          <p><span className='actStats'>Difficulty: </span>{a.difficulty}</p>
-                          <p><span className='actStats'>Duration: </span>{a.duration}hs</p>
-                          <p><span className='actStats'>Season: </span>{a.season}</p>
-                        </div>
+                        <p className='activityName'>• {a.name}</p>
+                        <p><span className='actStats'>Difficulty: </span>{a.difficulty}</p>
+                        <p><span className='actStats'>Duration: </span>{a.duration}hs</p>
+                        <p><span className='actStats'>Season: </span>{a.season}</p>
+                      </div>
                     )
                   })
                 : <p>This country doesn't have activities yet</p>}
@@ -54,7 +54,7 @@ const CountryDetail = () => {
 
           )
         : (
-          <h1>Loading...</h1>
+          <h1 className='loading'>Loading...</h1>
           )}
     </>
   )

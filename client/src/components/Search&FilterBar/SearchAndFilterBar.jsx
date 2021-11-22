@@ -34,6 +34,9 @@ const SearchAndFilterBar = () => {
   const onClick = () => {
     dispatch(resetFilters())
     // Falta hacer que los inputs vuelvan a su value inicial
+    document.getElementById('selectContinent').value = 'defaultValue'
+    document.getElementById('selectActivity').value = 'defaultValue'
+    document.getElementById('selectOrder').value = 'defaultValue'
   }
 
   return (
@@ -46,8 +49,8 @@ const SearchAndFilterBar = () => {
       </div>
       <div className='filterContainer'>
         <label className='filter'><img className='icon' src='https://img.icons8.com/material-rounded/24/000000/sorting-options.png' alt='filter' /></label>
-        <select className='selectFilters' name='filters' onChange={handleContinentFilter}>
-          <option defaultValue disabled selected hidden>Filter By Continent</option>
+        <select id='selectContinent' className='selectFilters' name='filters' onChange={handleContinentFilter}>
+          <option value='defaultValue' disabled selected hidden>Filter By Continent</option>
           <option value='All'>All</option>
           <option value='North America'>North America</option>
           <option value='South America'>South America</option>
@@ -57,8 +60,8 @@ const SearchAndFilterBar = () => {
           <option value='Asia'>Asia</option>
           <option value='Oceania'>Oceania</option>
         </select>
-        <select className='selectFilters' name='filters' onChange={handleActivityFilter}>
-          <option defaultValue disabled selected hidden>Filter By Activity</option>
+        <select id='selectActivity' className='selectFilters' name='filters' onChange={handleActivityFilter}>
+          <option value='defaultValue' disabled selected hidden>Filter By Activity</option>
           <option value='All'>All</option>
           {activities.length > 0
             ? activities.map(a => {
@@ -69,9 +72,9 @@ const SearchAndFilterBar = () => {
             : <option disabled>No activities</option>}
         </select>
         <label className='order'><img className='icon' src='https://img.icons8.com/material-sharp/24/000000/sort.png' alt='order' /></label>
-        <select name='orders' onChange={handleOrders}>
+        <select id='selectOrder' name='orders' onChange={handleOrders}>
           <optgroup label='By Name'>
-            <option defaultValue disabled selected hidden>Order</option>
+            <option value='defaultValue' disabled selected hidden>Order</option>
             <option value='A-Z'>A-Z</option>
             <option value='Z-A'>Z-A</option>
           </optgroup>

@@ -44,10 +44,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
     }
     case FILTER_ACTIVITY: {
       const countriesWithActivities = state.countries.filter(country => country.activities.find(activity => activity.name === payload))
-      console.log(countriesWithActivities)
+      // console.log(countriesWithActivities)
       return {
         ...state,
-        countriesCopy: payload === 'All' ? state.countries : countriesWithActivities
+        countriesCopy: payload === 'All' ? state.countries.filter(country => country.activities.length > 0) : countriesWithActivities
       }
     }
     case ORDER:
