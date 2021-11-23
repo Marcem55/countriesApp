@@ -41,6 +41,12 @@
     border: 1px solid black;
     border-radius: 2px;
     cursor: pointer;
+    transition: .5s;
+}
+
+.btn:hover {
+    background-color: #F6DDCC;
+    color: #90400C;
 }
 
 .or {

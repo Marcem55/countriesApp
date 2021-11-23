@@ -6,6 +6,7 @@ import './SearchAndFilterBar.css'
 const SearchAndFilterBar = () => {
   const dispatch = useDispatch()
 
+  const countries = useSelector(state => state.countriesCopy)
   const activities = useSelector(state => state.activities)
   const [country, setCountry] = useState('')
 
@@ -36,10 +37,11 @@ const SearchAndFilterBar = () => {
 
   const onClick = () => {
     dispatch(resetFilters())
-    // Falta hacer que los inputs vuelvan a su value inicial
+    // Falta hacer que los inputs vuelvan a su value inicial y que se reinicie el order
     resetSelectsFilters()
   }
 
+  // Funcion para resetear los values de los selects
   const resetSelectsFilters = () => {
     document.getElementById('selectContinent').value = 'defaultValue'
     document.getElementById('selectActivity').value = 'defaultValue'
