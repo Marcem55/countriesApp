@@ -123,6 +123,20 @@ const Form = () => {
   }
   // console.log(activity.countries)
 
+  const onClickCountry = (e) => {
+    const countryName = document.getElementById('selectCountries').value
+
+    e.preventDefault()
+    if (activity.countries.includes(countryName)) {
+      alert(`${countryName} is already selected`)
+    } else {
+      setActivity({
+        ...activity,
+        countries: [...activity.countries, countryName]
+      })
+    }
+  }
+
   const deleteCountry = (name) => {
     const filteredCountries = activity.countries.filter(country => country !== name)
 
@@ -184,13 +198,11 @@ const Form = () => {
   }
   // console.log(activity.countries);
 
-  
-
   return (
     <div className='formContainer'>
       <form className='form' onSubmit={handleSubmit}>
-        <h1 className='formTitle'>Add an activity!</h1>
-        <label>Name*</label>
+        <h1 className='formTitle'>Add an Activity!</h1>
+        <label>Activity Name*</label>
         <input className='formInputs' type='text' value={activity.name} name='name' onChange={handleChange} autoComplete='off' />
         {errors.name !== '' ? <p className='danger'>{errors.name}</p> : null}
         <div className='diffDuration'>
@@ -213,22 +225,25 @@ const Form = () => {
           <option value='Spring'>Spring</option>
           <option value='Summer'>Summer</option>
         </select>
-        <label>Countries*</label>
-        <select id='selectCountries' className='select formInputs' name='countries' onChange={handleSelect}>
-          <option value='defaultValue' disabled selected>Select Countries</option>
-          {orderedCountries.map(country =>
-            <option value={country.name} key={country.id}>
-              {country.name}
-            </option>
-          )}
-        </select>
+        <label>Countries (one or more)*</label>
+        <div className='addCountry'>
+          <select id='selectCountries' className='select formInputs' name='countries'>
+            <option value='defaultValue' disabled selected>Select Countries</option>
+            {orderedCountries.map(country =>
+              <option value={country.name} key={country.id}>
+                {country.name}
+              </option>
+            )}
+          </select>
+          <button className='addCountryBtn' onClick={onClickCountry}>Add</button>
+        </div>
         {errors.countries !== '' ? <p className='danger'>{errors.countries}</p> : null}
         <p className='danger spacing'>(*) required fields</p>
         {/* {disabledButton() === true ? <button className='addBtn disabled' type='submit' disabled>Add!</button> : <button className='addBtn' type='submit'>Add!</button>} */}
-        <button disabled={button} type='submit' className={button === false ? 'addBtn' : 'disabled'}>Add</button>
+        <button disabled={button} type='submit' className={button === false ? 'addBtn' : 'disabled'}>Create!</button>
       </form>
       <ul className='countriesList'>
-        {activity.countries.length > 0 ? activity.countries.map(country => <li className='countryItem' key={country}>• <button className='deleteBtn' onClick={() => deleteCountry(country)}>X</button> {country}</li>) : null}
+        {activity.countries.length > 0 ? activity.countries.map(country => <li className='countryItem' key={country}><button className='deleteBtn' onClick={() => deleteCountry(country)}>X</button> {country}</li>) : null}
       </ul>
     </div>
   )

@@ -22,10 +22,12 @@ const SearchAndFilterBar = () => {
 
   const handleContinentFilter = (e) => {
     dispatch(filterContinent(e.target.value))
+    document.getElementById('selectActivity').value = 'defaultValue'
   }
 
   const handleActivityFilter = (e) => {
     dispatch(filterActivity(e.target.value))
+    document.getElementById('selectContinent').value = 'defaultValue'
   }
 
   const handleOrders = (e) => {
@@ -65,6 +67,7 @@ const SearchAndFilterBar = () => {
           <option value='Asia'>Asia</option>
           <option value='Oceania'>Oceania</option>
         </select>
+        <p className='or'>Or</p>
         <select id='selectActivity' className='selectFilters' name='filters' onChange={handleActivityFilter}>
           <option value='defaultValue' disabled selected hidden>Filter By Activity</option>
           <option value='All'>All</option>
