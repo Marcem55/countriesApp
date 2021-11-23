@@ -86,3 +86,19 @@ span {
     margin-top: 2rem;
     text-align: center;
 }
+
+.goBackBtn {
+    margin-left: 5rem;
+    background-color: #90400C;
+    color: #F6DDCC;
+    padding: 1.2rem;
+    border: 1px solid black;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.goBackBtn:hover {
+    background-color: #F6DDCC;
+    color: #90400C;
+}

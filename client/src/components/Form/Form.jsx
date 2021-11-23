@@ -153,7 +153,7 @@ const Form = () => {
 
   // FALTA HACER QUE SI ES EL MISMO NOMBRE DE ACTIVIDAD, LE SUME LOS PAISES NUEVOS
   const validateActivity = (name) => {
-    const actToValidate = activities.filter(act => act.name === name)
+    const actToValidate = activities.filter(act => act.name.toLowerCase() === name.toLowerCase())
     console.log(actToValidate)
     if (actToValidate.length > 0) {
       return true

@@ -6,7 +6,6 @@ import './SearchAndFilterBar.css'
 const SearchAndFilterBar = () => {
   const dispatch = useDispatch()
 
-  const countries = useSelector(state => state.countriesCopy)
   const activities = useSelector(state => state.activities)
   const [country, setCountry] = useState('')
 
