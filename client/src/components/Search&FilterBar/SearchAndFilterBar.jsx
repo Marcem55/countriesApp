@@ -11,6 +11,7 @@ const SearchAndFilterBar = () => {
 
   const handleChange = (e) => {
     setCountry(e.target.value)
+    // console.log(e.target.value)
   }
 
   const handleSubmit = (e) => {
@@ -23,6 +24,7 @@ const SearchAndFilterBar = () => {
   const handleContinentFilter = (e) => {
     dispatch(filterContinent(e.target.value))
     document.getElementById('selectActivity').value = 'defaultValue'
+    document.getElementById('selectOrder').value = 'defaultValue'
   }
 
   const handleActivityFilter = (e) => {

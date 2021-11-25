@@ -16,7 +16,7 @@ const Form = () => {
   const dispatch = useDispatch()
   const countries = useSelector(state => state.countries)
   const activities = useSelector(state => state.activities)
-  console.log(activities)
+  // console.log(activities)
 
   const countriesToOrder = countries.map(country => {
     return {
@@ -34,13 +34,12 @@ const Form = () => {
     season: '',
     countries: [] // ['Argentina', 'Brazil', 'Polonia']
   })
-  // console.log(activity);
+  // console.log(activity)
 
   const [errors, setErrors] = useState({
     name: '',
     difficulty: '',
-    duration: '',
-    countries: ''
+    duration: ''
   })
   // console.log(errors);
 
@@ -108,25 +107,29 @@ const Form = () => {
     })
   }
 
-  const handleSelect = (e) => {
-    const countryName = e.target.value
-    // console.log(countryName);
-    if (activity.countries.includes(countryName)) {
-      alert(`${countryName} is already selected`)
-    } else {
-      setActivity({
-        ...activity,
-        countries: [...activity.countries, countryName]
-      })
-    }
-    // validateCountries(activity.countries);
-  }
-  // console.log(activity.countries)
+  // const handleSelect = (e) => {
+  //   const countryName = e.target.value
+  //   // console.log(countryName);
+  //   if (activity.countries.includes(countryName)) {
+  //     alert(`${countryName} is already selected`)
+  //   } else {
+  //     setActivity({
+  //       ...activity,
+  //       countries: [...activity.countries, countryName]
+  //     })
+  //   }
+  //   // validateCountries(activity.countries);
+  // }
+  // // console.log(activity.countries)
 
   const onClickCountry = (e) => {
     const countryName = document.getElementById('selectCountries').value
 
     e.preventDefault()
+    if (countryName === 'defaultValue') {
+      alert('Please, select a country')
+      return
+    }
     if (activity.countries.includes(countryName)) {
       alert(`${countryName} is already selected`)
     } else {
@@ -172,8 +175,7 @@ const Form = () => {
             activity.countries.length < 1 ||
             errors.name !== '' ||
             errors.difficulty !== '' ||
-            errors.duration !== '' ||
-            errors.countries !== '') {
+            errors.duration !== '') {
       alert('Please, check the fields')
       return
     }
@@ -182,7 +184,7 @@ const Form = () => {
       alert(`${activity.name} already exists`)
     } else {
       await axios.post(`${constants.ACTIVITIES_URL}`, activity)
-      // console.log(activity);
+      // console.log(activity)
       setActivity({
         name: '',
         difficulty: 1,
@@ -237,9 +239,7 @@ const Form = () => {
           </select>
           <button className='addCountryBtn' onClick={onClickCountry}>Add</button>
         </div>
-        {errors.countries !== '' ? <p className='danger'>{errors.countries}</p> : null}
         <p className='danger spacing'>(*) required fields</p>
-        {/* {disabledButton() === true ? <button className='addBtn disabled' type='submit' disabled>Add!</button> : <button className='addBtn' type='submit'>Add!</button>} */}
         <button disabled={button} type='submit' className={button === false ? 'addBtn' : 'disabled'}>Create!</button>
       </form>
       <ul className='countriesList'>

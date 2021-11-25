@@ -4,7 +4,7 @@ import './Card.css'
 
 const Card = ({ name, image, continent, id }) => {
   return (
-    <div>
+    <div className='card'>
       <Link className='cardContainer' to={`/country/${id}`}>
         <img className='cardImg' src={image} alt={name} />
         <h3 className='cardTitle'>{name}</h3>

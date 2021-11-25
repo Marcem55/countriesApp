@@ -15,6 +15,7 @@
     text-decoration: none;
     width: 275px;
     transition: .4s;
+    height: 255px;
 }
 
 .cardContainer:hover {
@@ -29,4 +30,5 @@
 
 .cardTitle {
     margin-bottom: 1rem;
+    text-align: center;
 }

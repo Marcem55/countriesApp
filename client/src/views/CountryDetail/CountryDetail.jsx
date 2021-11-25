@@ -26,6 +26,7 @@ const CountryDetail = () => {
             <div className='detailContainer'>
               <img className='imgDetail' src={country?.image} alt={country?.name} />
               <div className='countryGeo'>
+                <h3 className='id'>ID: <span>{country?.id}</span></h3>
                 <h3 className='name'>Name: <span>{country?.name}</span></h3>
                 <h3 className='capital'>Capital: <span>{country?.capital}</span></h3>
                 <h3 className='continent'>Continent: <span>{country?.continent}</span></h3>
