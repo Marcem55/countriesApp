@@ -94,3 +94,87 @@ span {
     background-color: #F6DDCC;
     color: #90400C;
 }
+
+@media (max-width: 468px) {
+    .detailContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .imgDetail {
+        width: 250px;
+        height: 150px;
+    }
+
+    .countryGeo {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .id {
+        margin-top: 1rem;
+    }
+
+    .nameCapital {
+        display: flex;
+        align-content: space-around;
+    }
+
+    .areaPopulationContainer {
+        width: 100%;
+        flex-direction: row;
+        text-align: center;
+    }
+
+    .area {
+        margin: 0 1rem;
+    }
+
+    .population {
+        margin: 0;
+    }
+
+    .goBackBtn {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .detailContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .imgDetail {
+        width: 250px;
+        height: 150px;
+    }
+
+    .countryGeo {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .id {
+        margin-top: 1rem;
+    }
+
+    .nameCapital {
+        display: flex;
+        align-content: space-around;
+    }
+
+    .areaPopulationContainer {
+        width: 100%;
+        flex-direction: row;
+        text-align: center;
+    }
+
+    .area {
+        margin: 0 1rem;
+    }
+
+    .population {
+        margin: 0;
+    }
+}
