@@ -22,41 +22,58 @@ const Home = () => {
   const firstItemPerPage = lastItemPerPage - itemsPerPage
   const currentPageItems = countries?.slice(firstItemPerPage, lastItemPerPage)
   // console.log(currentPageItems);
-  const pages = []
+  // const pages = []
   const numOfPages = Math.ceil(countries.length / itemsPerPage)
 
-  for (let i = 1; i <= numOfPages; i++) {
-    pages.push(i)
-  }
+  // for (let i = 1; i <= numOfPages; i++) {
+  //   pages.push(i)
+  // }
 
-  const pagination = (e, page) => {
-    e.preventDefault()
-    setCurrentPage(page)
-  }
+  // const pagination = (e, page) => {
+  //   e.preventDefault()
+  //   setCurrentPage(page)
+  // }
 
-  const renderPages = pages.map(page => (
-    <li key={page}>
-      <div>
-        <button className='pageBtn' onClick={e => pagination(e, page)}>
-          {page}
-        </button>
-      </div>
-    </li>
-  ))
+  // const renderPages = pages.map(page => (
+  //   <li key={page}>
+  //     <div>
+  //       <button className='pageBtn' onClick={e => pagination(e, page)}>
+  //         {page}
+  //       </button>
+  //     </div>
+  //   </li>
+  // ))
 
   // SI CAMBIAN LOS FILTROS, QUE RESETEE LA PAGINACION
   useEffect(() => {
     setCurrentPage(1)
   }, [countries])
 
+  const nextPage = () => {
+    currentPage < numOfPages ? setCurrentPage(currentPage + 1) : setCurrentPage(currentPage)
+  }
+
+  const previousPage = () => {
+    currentPage > 1 ? setCurrentPage(currentPage - 1) : setCurrentPage(currentPage)
+  }
+
+  const rightButton = () => {
+    return currentPage === numOfPages ? '' : <button className='pageBtn' onClick={nextPage}>{'>>'}</button>
+  }
+
+  const leftButton = () => {
+    return currentPage === 1 ? '' : <button className='pageBtn' onClick={previousPage}>{'<<'}</button>
+  }
+
   return (
     <div className='home'>
       <NavBar />
       <SearchAndFilterBar />
       {currentPageItems.length > 0 ? <Cards countries={currentPageItems} /> : <div className='notFound'><h3 className='notFoundP'>Country not found</h3><iframe src='https://giphy.com/embed/UOdoMz3baCENO' width='360' height='240' frameBorder='0' class='giphy-embed' allowFullScreen /></div>}
-      <ul className='pagination'>
+      {/* <ul className='pagination'>
         {renderPages}
-      </ul>
+      </ul> */}
+      <div className='buttons'>{leftButton()}<p>{currentPage}</p>{rightButton()}</div>
     </div>
   )
 }
