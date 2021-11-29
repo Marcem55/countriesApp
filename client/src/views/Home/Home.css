@@ -42,3 +42,33 @@
 .notFoundP {
     margin-bottom: 2rem;
 }
+
+@media (max-width: 1000px) {
+    .notFound {
+        margin: 2rem 25rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .notFound {
+        margin: 2rem 20rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .notFound {
+        margin: 2rem 10rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .notFound {
+        margin: 2rem 5rem;
+    }
+}
+
+@media (max-width: 468px) {
+    .notFound {
+        margin: 2rem;
+    }
+}
