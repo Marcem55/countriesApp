@@ -58,42 +58,46 @@ const SearchAndFilterBar = () => {
         </form>
       </div>
       <div className='filterContainer'>
-        <label className='filter'><img className='icon' src='https://img.icons8.com/material-rounded/24/000000/sorting-options.png' alt='filter' /></label>
-        <select id='selectContinent' className='selectFilters' name='filters' onChange={handleContinentFilter}>
-          <option value='defaultValue' disabled selected hidden>Filter By Continent</option>
-          <option value='All'>All</option>
-          <option value='North America'>North America</option>
-          <option value='South America'>South America</option>
-          <option value='Antarctica'>Antarctica</option>
-          <option value='Europe'>Europe</option>
-          <option value='Africa'>Africa</option>
-          <option value='Asia'>Asia</option>
-          <option value='Oceania'>Oceania</option>
-        </select>
-        <p className='or'>Or</p>
-        <select id='selectActivity' className='selectFilters' name='filters' onChange={handleActivityFilter}>
-          <option value='defaultValue' disabled selected hidden>Filter By Activity</option>
-          <option value='All'>All</option>
-          {activities.length > 0
-            ? activities.map(a => {
-                return (
-                  <option key={a.id} value={a.name}>{a.name}</option>
-                )
-              })
-            : <option disabled>No activities</option>}
-        </select>
-        <label className='order'><img className='icon' src='https://img.icons8.com/material-sharp/24/000000/sort.png' alt='order' /></label>
-        <select id='selectOrder' name='orders' onChange={handleOrders}>
-          <optgroup label='By Name'>
-            <option value='defaultValue' disabled selected hidden>Order</option>
-            <option value='A-Z'>A-Z</option>
-            <option value='Z-A'>Z-A</option>
-          </optgroup>
-          <optgroup label='By Population'>
-            <option value='More'>More</option>
-            <option value='Less'>Less</option>
-          </optgroup>
-        </select>
+        <div className='onlyFilters'>
+          <label className='filter'><img className='icon' src='https://img.icons8.com/material-rounded/24/000000/sorting-options.png' alt='filter' /></label>
+          <select id='selectContinent' className='selectFilters' name='filters' onChange={handleContinentFilter}>
+            <option value='defaultValue' disabled selected hidden>Filter By Continent</option>
+            <option value='All'>All</option>
+            <option value='North America'>North America</option>
+            <option value='South America'>South America</option>
+            <option value='Antarctica'>Antarctica</option>
+            <option value='Europe'>Europe</option>
+            <option value='Africa'>Africa</option>
+            <option value='Asia'>Asia</option>
+            <option value='Oceania'>Oceania</option>
+          </select>
+          <p className='or'>Or</p>
+          <select id='selectActivity' className='selectFilters' name='filters' onChange={handleActivityFilter}>
+            <option value='defaultValue' disabled selected hidden>Filter By Activity</option>
+            <option value='All'>All</option>
+            {activities.length > 0
+              ? activities.map(a => {
+                  return (
+                    <option key={a.id} value={a.name}>{a.name}</option>
+                  )
+                })
+              : <option disabled>No activities</option>}
+          </select>
+        </div>
+        <div className='onlyOrder'>
+          <label className='order'><img className='icon' src='https://img.icons8.com/material-sharp/24/000000/sort.png' alt='order' /></label>
+          <select id='selectOrder' name='orders' onChange={handleOrders}>
+            <optgroup label='By Name'>
+              <option value='defaultValue' disabled selected hidden>Order</option>
+              <option value='A-Z'>A-Z</option>
+              <option value='Z-A'>Z-A</option>
+            </optgroup>
+            <optgroup label='By Population'>
+              <option value='More'>More</option>
+              <option value='Less'>Less</option>
+            </optgroup>
+          </select>
+        </div>
       </div>
       <div className='btnContainer'>
         <button className='btn' onClick={onClick}>Reset Filters</button>
