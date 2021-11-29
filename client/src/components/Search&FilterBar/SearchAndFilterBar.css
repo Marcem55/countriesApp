@@ -75,10 +75,16 @@
         flex-direction: column;
     }
     .onlyFilters {
-        display: flex;
         padding-left: 1.5rem;
-        margin-bottom: 1rem;
-        justify-content: center;
+
+    }
+
+    .selectFilters {
+        margin: 0;
+    }
+
+    .or {
+        margin: 1rem;
     }
 
     .onlyOrder {

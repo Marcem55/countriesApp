@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import constants from '../../constants'
 import { getActivities, getCountries } from '../../redux/actions'
 import './Form.css'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Form = () => {
   /* Enviar al back activity = {
@@ -107,31 +109,32 @@ const Form = () => {
     })
   }
 
-  // const handleSelect = (e) => {
-  //   const countryName = e.target.value
-  //   // console.log(countryName);
-  //   if (activity.countries.includes(countryName)) {
-  //     alert(`${countryName} is already selected`)
-  //   } else {
-  //     setActivity({
-  //       ...activity,
-  //       countries: [...activity.countries, countryName]
-  //     })
-  //   }
-  //   // validateCountries(activity.countries);
-  // }
-  // // console.log(activity.countries)
-
   const onClickCountry = (e) => {
     const countryName = document.getElementById('selectCountries').value
 
     e.preventDefault()
     if (countryName === 'defaultValue') {
-      alert('Please, select a country')
+      toast.warn('Please select a country', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      })
       return
     }
     if (activity.countries.includes(countryName)) {
-      alert(`${countryName} is already selected`)
+      toast.warn(`${countryName} is already selected`, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      })
     } else {
       setActivity({
         ...activity,
@@ -172,16 +175,33 @@ const Form = () => {
             activity.difficulty === '' ||
             activity.duration === '' ||
             activity.duration === 0 ||
+            activity.season === '' ||
             activity.countries.length < 1 ||
             errors.name !== '' ||
             errors.difficulty !== '' ||
             errors.duration !== '') {
-      alert('Please, check the fields')
+      toast.error('Please, check the fileds', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      })
       return
     }
 
     if (validateActivity(activity.name)) {
-      alert(`${activity.name} already exists`)
+      toast.warn(`${activity.name} already exists`, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      })
     } else {
       await axios.post(`${constants.ACTIVITIES_URL}`, activity)
       // console.log(activity)
@@ -194,7 +214,15 @@ const Form = () => {
       })
       dispatch(getActivities())
       dispatch(getCountries())
-      alert('Created!')
+      toast.success('Created!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      })
       resetSelects()
     }
   }
@@ -219,7 +247,7 @@ const Form = () => {
             {errors.duration !== '' ? <p className='danger'>{errors.duration}</p> : null}
           </div>
         </div>
-        <label>Season</label>
+        <label>Season*</label>
         <select id='selectSeason' className='select formInputs' name='season' onChange={handleChange}>
           <option value='defaultValue' disabled selected>Select Season</option>
           <option value='Autumn'>Autumn</option>
@@ -239,12 +267,13 @@ const Form = () => {
           </select>
           <button className='addCountryBtn' onClick={onClickCountry}>Add</button>
         </div>
+        <ul className='countriesList'>
+          {activity.countries.length > 0 ? activity.countries.map(country => <li className='countryItem' key={country}><button className='deleteBtn' onClick={() => deleteCountry(country)}>X</button> {country}</li>) : null}
+        </ul>
         <p className='danger spacing'>(*) required fields</p>
         <button disabled={button} type='submit' className={button === false ? 'addBtn' : 'disabled'}>Create!</button>
       </form>
-      <ul className='countriesList'>
-        {activity.countries.length > 0 ? activity.countries.map(country => <li className='countryItem' key={country}><button className='deleteBtn' onClick={() => deleteCountry(country)}>X</button> {country}</li>) : null}
-      </ul>
+      <ToastContainer />
     </div>
   )
 }

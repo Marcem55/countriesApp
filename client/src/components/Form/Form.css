@@ -48,6 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 2rem;
 }
 
 .countryItem {
@@ -135,4 +136,62 @@ label {
 .addCountryBtn:hover {
     background-color: #F6DDCC;
     color: #90400C;
+}
+
+@media (max-width: 468px) {
+    .formContainer {
+        margin: 2rem;
+    }
+
+    .diffDuration {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addCountry {
+        flex-direction: column;
+    }
+
+    .select {
+        width: 100%;
+    }
+
+    .addCountryBtn {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .countriesList {
+        align-items: flex-start;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .formContainer {
+        margin: 2rem;
+    }
+
+    .diffDuration {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addCountry {
+        flex-direction: column;
+    }
+
+    .select {
+        width: 100%;
+    }
+
+    .addCountryBtn {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .countriesList {
+        align-items: flex-start;
+        margin-bottom: 2rem;
+    }
 }
