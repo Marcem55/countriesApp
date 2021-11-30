@@ -73,7 +73,7 @@ const Home = () => {
       {/* <ul className='pagination'>
         {renderPages}
       </ul> */}
-      <div className='buttons'>{leftButton()}<p>{currentPage}</p>{rightButton()}</div>
+      <div className='buttons'>{leftButton()}<p>{currentPage} of {numOfPages}</p>{rightButton()}</div>
     </div>
   )
 }

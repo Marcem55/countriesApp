@@ -238,7 +238,7 @@ const Form = () => {
         <div className='diffDuration'>
           <div className='difficulty'>
             <label>Difficulty*</label>
-            <input className='formInputs' type='number' value={activity.difficulty} name='difficulty' onChange={handleChange} min='1' max='5' />
+            <input className='formInputs' type='number' value={activity.difficulty} name='difficulty' onChange={handleChange} />
             {errors.difficulty !== '' ? <p className='danger'>{errors.difficulty}</p> : null}
           </div>
           <div className='duration'>
