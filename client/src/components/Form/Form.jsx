@@ -205,15 +205,6 @@ const Form = () => {
     } else {
       await axios.post(`${constants.ACTIVITIES_URL}`, activity)
       // console.log(activity)
-      setActivity({
-        name: '',
-        difficulty: 1,
-        duration: 0,
-        season: '',
-        countries: []
-      })
-      dispatch(getActivities())
-      dispatch(getCountries())
       toast.success('Created!', {
         position: 'top-center',
         autoClose: 3000,
@@ -223,6 +214,15 @@ const Form = () => {
         draggable: true,
         progress: undefined
       })
+      setActivity({
+        name: '',
+        difficulty: 1,
+        duration: 0,
+        season: '',
+        countries: []
+      })
+      dispatch(getActivities())
+      dispatch(getCountries())
       resetSelects()
     }
   }
