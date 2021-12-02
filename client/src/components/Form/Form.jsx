@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import constants from '../../constants'
 import { getActivities, getCountries } from '../../redux/actions'
 import './Form.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+require('dotenv').config()
 
 const Form = () => {
   /* Enviar al back activity = {
@@ -203,7 +203,7 @@ const Form = () => {
         progress: undefined
       })
     } else {
-      await axios.post(`${constants.ACTIVITIES_URL}`, activity)
+      await axios.post(process.env.REACT_APP_ACTIVITIES_URL, activity)
       // console.log(activity)
       toast.success('Created!', {
         position: 'top-center',

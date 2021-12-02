@@ -4,7 +4,7 @@ require('dotenv').config()
 
 export const getCountries = () => {
   return async (dispatch) => {
-    const countries = await axios.get(process.env.COUNTRIES_URL)
+    const countries = await axios.get(process.env.REACT_APP_COUNTRIES_URL)
     dispatch({
       type: GET_COUNTRIES,
       payload: countries.data
@@ -14,7 +14,7 @@ export const getCountries = () => {
 
 export const getActivities = () => {
   return async (dispatch) => {
-    const activities = await axios.get(process.env.ACTIVITIES_URL)
+    const activities = await axios.get(process.env.REACT_APP_ACTIVITIES_URL)
     dispatch({
       type: GET_ACTIVITIES,
       payload: activities.data
@@ -24,7 +24,7 @@ export const getActivities = () => {
 
 export const getCountryDetail = (id) => {
   return async (dispatch) => {
-    const country = await axios.get(`${process.env.COUNTRIES_URL}/${id}`)
+    const country = await axios.get(`${process.env.REACT_APP_COUNTRIES_URL}/${id}`)
     dispatch({
       type: GET_COUNTRY_DETAIL,
       payload: country.data
@@ -34,7 +34,7 @@ export const getCountryDetail = (id) => {
 
 export const getCountriesByName = (name) => {
   return async (dispatch) => {
-    const countries = await axios.get(`${process.env.COUNTRIES_URL}?name=${name}`)
+    const countries = await axios.get(`${process.env.REACT_APP_COUNTRIES_URL}?name=${name}`)
     dispatch({
       type: GET_COUNTRIES_BY_NAME,
       payload: countries.data
